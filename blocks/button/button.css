@@ -1,0 +1,14 @@
+.button {
+    padding: 0; 
+    box-sizing: border-box;
+    border: 1px solid #FFFFFF; 
+    background-color: transparent; 
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: auto auto;
+    cursor: pointer;
+}
+
+.button:hover {
+    opacity: 0.6;
+}

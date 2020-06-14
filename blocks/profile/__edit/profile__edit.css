@@ -1,0 +1,15 @@
+.profile__edit {
+    width: 24px;
+    height: 24px;
+    background-image: url(../../../images/Edit.svg);
+    margin-right: auto;
+    margin-bottom: 30px;
+    flex-shrink: 1;
+}
+
+@media all and (max-width: 720px) {
+    .profile__edit {
+        width: 18px;
+        height: 18px;
+        }
+}
