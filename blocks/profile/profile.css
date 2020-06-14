@@ -12,7 +12,7 @@
     align-items: center;    
 }
 
-@media all and (max-width: 720px) {
+@media all and (max-width: 750px) {
     .profile {
         flex-direction: column;
         justify-content: center;

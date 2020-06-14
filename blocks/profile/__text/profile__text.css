@@ -5,16 +5,11 @@
     margin: 0;
 }
 
-@media all and (max-width: 1070px) {
-    .profile__text {
-        font-size: 16px;
-        }
-    }
-
-    @media all and (max-width: 720px) {
+    @media all and (max-width: 750px) {
         .profile__text {
             font-size: 14px;
-            text-align: center;
-            margin-bottom: 36px;
+            align-self: start; 
+            grid-column-start: 1;
+            grid-column-end: 3;           
             }
-    }
+        }

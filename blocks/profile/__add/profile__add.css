@@ -6,7 +6,7 @@
     border: 2px solid #FFFFFF;
     }
 
-@media all and (max-width: 720px) {
+@media all and (max-width: 750px) {
     .profile__add {
         width: 282px;
         height: 50px;
