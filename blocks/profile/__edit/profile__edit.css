@@ -4,7 +4,7 @@
     background-image: url(../../../images/Edit.svg);
 }
 
-@media all and (max-width: 750px) {
+@media all and (max-width: 800px) {
     .profile__edit {
         width: 18px;
         height: 18px;

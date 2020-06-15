@@ -11,7 +11,6 @@
 
     <header class="header page__sections">
         <img src="images/logo.svg" alt="Mesto Russia" class="header__logo">
-
     </header>
 
     <main>
@@ -26,56 +25,58 @@
         </section>
 
 
-        <section class="elements page__sections">
-            <div class="elements__item">
+        <section class = "elements page__sections">
+            <ul class = "elements__items">
+            <li class="elements__item">
                 <img src="images/karach1.jpg" alt="Пейзаж с домом" class="elements__img">
                 <div class="elements__label">
                     <h2 class="elements__title">Карачаевск </h2>
                     <button type="button" class="button elements__like"></button>                                             
                 </div>
-            </div>
+            </li>
 
-            <div class="elements__item">
+            <li class="elements__item">
                 <img src="images/elbrus1.jpg" alt="Вид на гору на закате" class="elements__img">
                 <div class="elements__label">
                     <h2 class="elements__title">Гора Эльбрус</h2>
                     <button type="button" class="button elements__like"></button>                    
                 </div>                
-            </div>
+            </li>
 
-            <div class="elements__item">
+            <li class="elements__item">
                 <img src="images/dombai1.jpg" alt="Вид на горный хребет" class="elements__img">
                 <div class="elements__label">
                     <h2 class="elements__title">Домбай</h2>
                     <button type="button" class="button elements__like"></button>                    
                 </div>                
-            </div>
+            </li>
 
-            <div class="elements__item">
+            <li class="elements__item">
                 <img src="images/elbrus2.jpg" alt="Заснеженный склон горы" class="elements__img">
                 <div class="elements__label">
                     <h2 class="elements__title">Гора Эльбрус</h2>
                     <button type="button" class="button elements__like"></button>                    
                 </div>                
-            </div>
+            </li>
 
-            <div class="elements__item">
+            <li class="elements__item">
                 <img src="images/dombai2.jpg" alt="Гора, отражающаяся в воде" class="elements__img">
                 <div class="elements__label">
                     <h2 class="elements__title">Домбай</h2>
                     <button type="button" class="button elements__like"></button>                    
                 </div>                
-            </div>
+            </li>
 
-            <div class="elements__item">
+            <li class="elements__item">
                 <img src="images/karach2.jpg" alt="Дорога к дому на горе" class="elements__img">
                 <div class="elements__label">
                     <h2 class="elements__title">Карачаево-Черкессия</h2>
                     <button type="button" class="button elements__like"></button>                    
                 </div>                
-            </div>
-
+            </li>
+        </ul>
         </section>
+        
     </main>
 
     <footer class="footer page__sections">
@@ -85,12 +86,8 @@
 
     <div class="popup">
         <div class="popup__container">
-            <svg class="popup__close" width="40" height="40" viewBox="0 0 58 58" fill="none" 
-                xmlns="http://www.w3.org/2000/svg"><path d="M44.7661 41.5683L31.9759 28.778L44.7661 15.9878L41.5686 
-                12.7902L28.7783 25.5805L15.9881 12.7902L12.7905 15.9878L25.5808 28.778L12.7905 41.5683L15.9881 
-                44.7658L28.7783 31.9756L41.5686 44.7658L44.7661 41.5683Z" fill="white"/>
-                </svg>
-            <form class="popup__content" >
+            <button type="button" class="button popup__close"></button>            
+            <form name="submit" action ="#" method = "post" class="popup__form" >
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <input type="text" name="name" value="" class="popup__input popup__input_subject_name">
                 <input type="text" name="job" value="" class="popup__input popup__input_subject_job">
@@ -99,6 +96,6 @@
         </div>
     </div>
     
-    <script src="script.js"></script>
+    <script src="./scripts/script.js"></script>
 </body>
 </html>
