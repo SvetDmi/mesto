@@ -1,6 +1,6 @@
 .page__sections {
     margin: 0 auto;
-    width: calc(100% - 400px);
+    width: calc(100% - 398px);
     max-width: 1200px;
     
 }
@@ -17,13 +17,13 @@
         }
 }
 
-@media all and (max-width: 720px) {
+@media all and (max-width: 800px) {
     .page__sections {
         width: calc(100% - 38px);
         }
 }
 
-@media all and (max-width: 319px) {
+@media all and (max-width: 320px) {
     .page__sections {
         width: calc(100% - 18px);
         }

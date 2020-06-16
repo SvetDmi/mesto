@@ -12,8 +12,9 @@ let profileJob = document.querySelector('.profile__text');
 
 function popupToggle() {
     popup.classList.toggle('popup_opened');
-    inputName.value = profileName.textContent;
-    inputJob.value = profileJob.textContent;
+    if (popup.classList.contains('popup_opened') === true) {
+        inputName.value = profileName.textContent;
+        inputJob.value = profileJob.textContent;}
 }
 
 function formSubmitHandler (evt) {
