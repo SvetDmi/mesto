@@ -11,6 +11,10 @@
     border-radius: 10px;
 }
 
+.popup__container_element {
+    font-size: 14px;
+}
+
 @media all and (max-width: 720px) {
     .popup__container {
         width: 300px;

@@ -1,5 +1,7 @@
 @import url(./_subject/popup__input_subject_job.css);
 @import url(./_subject/popup__input_subject_name.css);
+@import url(./_subject/popup__input_subject_pic-title.css);
+@import url(./_subject/popup__input_subject_pic-link.css);
 
 .popup__input {
     outline: none;
@@ -9,7 +11,6 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 1.2;
-    color: black;
     padding: 13px 0 13px 2px;
     margin-bottom: 15px;
     width: 100%;

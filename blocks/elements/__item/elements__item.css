@@ -1,6 +1,8 @@
 .elements__item {
     width: 32%;
     margin-right: 2%; 
+    position: relative;
+    
 }
 
 .elements__item:nth-child(3n)  {
