@@ -1,14 +1,12 @@
 .elements__img {
     display: block;
     width: 100%;
-    height: 282px;
-    /*
-    background-image: url(https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    text-decoration: none;
-    border-radius: 10px 10px 0px 0px;
-    margin: 0;*/
-    
+    height: 282px;    
+}
+
+.loyout__img {
+    width: 100%;
+    max-width: 75vw;
+    max-height: 75vh;
+
 }
