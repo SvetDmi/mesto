@@ -7,13 +7,7 @@
     margin: 0 0 40px 0;
 }
 
-.loyout__title {
-    font-size: 12px;
-    color: white;
-    font-family: "Inter", "Arial", sans-serif;
-    font-weight: normal;
-    line-height: 1.2;
-}
+
 
 @media all and (max-width: 720px) {
     .popup__title {
