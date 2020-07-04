@@ -1,6 +1,4 @@
-const popup = document.querySelector('.popup'); /* в код-ревью написано "Элемент нигде не используется далее. Необходимо удалить", 
-я отметила "исправлено", но удалять не стала, так как видимо не было замечено, что этот элемент используется в фунцкии popupToggle
- - первая функция под константами*/
+
 const popupProfile = document.querySelector('.popup_type_profile');
 const buttonOpenProfile = document.querySelector('.profile__edit');
 const popupSaveProfile = popupProfile.querySelector('.popup__form');
@@ -40,8 +38,7 @@ function profileFormSubmit(evt) {
     buttonOpenProfile.addEventListener('click', function () {
         popupToggle(popupProfile);    
             inputName.value = profileName.textContent;
-            inputJob.value = profileJob.textContent;
-        
+            inputJob.value = profileJob.textContent;        
     })
 
     popupSaveProfile.addEventListener('submit', profileFormSubmit);
@@ -49,10 +46,6 @@ function profileFormSubmit(evt) {
     buttonCloseProfile.addEventListener('click', function () {
         popupToggle(popupProfile);
     })
-
-    cards.forEach(function (item) {
-        elementAdd(item);
-    });
 
 function elementCreate(item) {
     const card = cardsTemplate.cloneNode(true);
@@ -72,20 +65,25 @@ function elementCreate(item) {
         layoutTitle.textContent  = item.name;
         layoutImg.src = item.link;
       }); 
-    return card;    
+    return card;       
       }
 
-function elementAdd(item) {
-    let element = elementCreate(item);
-    cardsList.prepend(element);
+function elementAdd(element, container) {         
+    container.prepend(element);    
         }
-    
+  
+cards.forEach(function (item) {
+        const card = elementCreate(item);
+        elementAdd(card, cardsList);
+    });
+
 function elementFormSubmit(evt) {
     evt.preventDefault();
-    let name = inputTitle.value;
-    let link = inputLink.value;
-    elementAdd({name, link});
+    const name = inputTitle.value;
+    const link = inputLink.value;
+    const card = elementCreate({name, link});    
     popupToggle(popupElement);
+    elementAdd(card, cardsList);
 }
 
     buttonAddElement.addEventListener('click', function () {
