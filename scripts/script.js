@@ -14,10 +14,7 @@ const cardsItem = cardsList.querySelector('.elements__item');
 const cardsTemplate = document.querySelector('.elements__template').content;
 const inputTitle = popupSaveElement.querySelector('.popup__input_subject_pic-title');
 const inputLink = popupSaveElement.querySelector('.popup__input_subject_pic-link');
-<<<<<<< HEAD
-=======
 const formElement = document.querySelector('.popup__form');
->>>>>>> develop
 
 const layout = document.querySelector('.popup_type_layout');
 const layoutTitle = layout.querySelector('.popup__title_layout');
@@ -62,13 +59,6 @@ function profileFormSubmit(evt) {
       
 }
 
-<<<<<<< HEAD
-    buttonOpenProfile.addEventListener('click', function () {
-        popupToggle(popupProfile);    
-            inputName.value = profileName.textContent;
-            inputJob.value = profileJob.textContent;        
-    })
-=======
 buttonOpenProfile.addEventListener('click', function () {
     popupToggle(popupProfile);
     if (popupProfile.classList.contains('popup_opened')) {
@@ -78,9 +68,8 @@ buttonOpenProfile.addEventListener('click', function () {
 })
 
 popupProfile.querySelector('.popup__form').addEventListener('submit', profileFormSubmit);
->>>>>>> develop
 
-    popupSaveProfile.addEventListener('submit', profileFormSubmit);
+popupProfile.querySelector('.popup__save').addEventListener('submit', profileFormSubmit);
 
     buttonCloseProfile.addEventListener('click', function () {
         popupToggle(popupProfile);
@@ -122,37 +111,22 @@ function elementFormSubmit(evt) {
     const link = inputLink.value;
     const card = elementCreate({name, link});    
     popupToggle(popupElement);
-<<<<<<< HEAD
-    elementAdd(card, cardsList);
-=======
    
->>>>>>> develop
 }
 
     buttonAddElement.addEventListener('click', function () {
         popupToggle(popupElement); 
             inputTitle.value = '';
             inputLink.value = '';
-<<<<<<< HEAD
-        })
-        
-    popupSaveElement.addEventListener('submit',elementFormSubmit);
-=======
-        }        
-    })
+               
+    });
     
 popupSaveElement.addEventListener('submit', elementFormSubmit);
->>>>>>> develop
 
     buttonCloseElement.addEventListener('click', function () {
         popupToggle(popupElement);  
     })
 
-<<<<<<< HEAD
-    buttonCloselayout.addEventListener('click', function () {
-        popupToggle(layout);
-    })
-=======
 buttonCloseLoyout.addEventListener('click', function () {
     popupToggle(loyout);
 })
@@ -161,4 +135,3 @@ buttonCloseLoyout.addEventListener('click', function () {
 document.addEventListener('keydown', popupCloseEsc);
 
 document.addEventListener('click', popupCloseOverlay);
->>>>>>> develop
