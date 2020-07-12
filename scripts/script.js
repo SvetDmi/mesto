@@ -127,7 +127,7 @@ popupSaveElement.addEventListener('submit', elementFormSubmit);
         popupToggle(popupElement);  
     })
 
-buttonCloseLoyout.addEventListener('click', function () {
+    buttonCloselayout.addEventListener('click', function () {
     popupToggle(loyout);
 })
 
