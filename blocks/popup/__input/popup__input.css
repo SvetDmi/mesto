@@ -2,9 +2,11 @@
 @import url(./_subject/popup__input_subject_name.css);
 @import url(./_subject/popup__input_subject_pic-title.css);
 @import url(./_subject/popup__input_subject_pic-link.css);
+@import url(./_error/popup__input_error.css);
+
 
 .popup__input {
-    outline: none;
+    
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     font-family: "Inter", "Arial", sans-serif;
@@ -16,9 +18,8 @@
     width: 100%;
 }
 
+
 .popup__input:focus {
     outline: 1px solid blue;    
   }
-
-
 
