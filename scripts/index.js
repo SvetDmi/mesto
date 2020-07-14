@@ -42,6 +42,7 @@ function popupFormClose(popup, config) {
     inputList.forEach((inputElement) => {
     hideInputError(formElement, inputElement, config);
     popup.classList.remove('popup_opened');
+    const buttonElement = popup.querySelector(config.buttonSelector);
     buttonElement.setAttribute('disabled', 'minus');   
     });
  }
@@ -112,8 +113,7 @@ function elementFormSubmit(evt) {
     buttonAddElement.addEventListener('click', function () { 
         popupOpen(popupElement);  
             inputTitle.value = ''; 
-            inputLink.value = ''; 
-            buttonElement.setAttribute('disabled', 'minus');             
+            inputLink.value = '';                        
         }) 
          
     popupSaveElement.addEventListener('submit', elementFormSubmit); 
