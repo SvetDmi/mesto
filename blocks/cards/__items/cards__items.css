@@ -1,5 +1,5 @@
 
-.elements__items {
+.cards__items {
     display: flex;
     flex-wrap: wrap;
     list-style-type: none;
@@ -9,7 +9,7 @@
 }
 
 @media all and (max-width: 800px) {
-    .elements__items {
+    .cards__items {
         justify-content: center;
         }
 }

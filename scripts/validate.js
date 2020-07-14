@@ -5,7 +5,7 @@ const config = {
     errorInputClass: 'popup__input_error',
     errorClass: 'popup__input-error_active',
     errorButtonClass: 'popup__save_inactive'    
-  }
+  };
 
 // Добавление класса ошибки
 const showInputError = (formElement, inputElement, errorMessage, config) => {    
