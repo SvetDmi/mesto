@@ -8,12 +8,13 @@
     text-align: center;    
     margin-top: 20px;
     border-radius: 2px;
-  
-    background: black;
-    color: white;     
+    
+    background-color: black;
+    color: white; 
+        
 }
-
 .popup__save:hover {
     opacity: 0.8;
 }
+
 
