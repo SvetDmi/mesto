@@ -1,20 +1,9 @@
-export const config = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    buttonSelector: '.popup__save',
-    errorInputClass: 'popup__input_error',
-    errorClass: 'popup__input-error_active',
-    errorButtonClass: 'popup__save_inactive'
-};
-
 export default class FormValidator {
 
     constructor(config, form) {
         this._config = config;
         this._form = form;
     }
-
-
 
     _showInputError(inputElement, errorMessage) {
         const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
@@ -33,7 +22,6 @@ export default class FormValidator {
     _isValid(inputElement) {
         if (!inputElement.validity.valid) {
             this._showInputError(inputElement, inputElement.validationMessage);
-
         } else {
             this._hideInputError(inputElement);
         }
@@ -57,7 +45,6 @@ export default class FormValidator {
 
     _setEventListeners() {
         const inputList = Array.from(this._form.querySelectorAll(this._config.inputSelector));
-
         const buttonElement = this._form.querySelector(this._config.buttonSelector);
         inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
@@ -77,10 +64,9 @@ export default class FormValidator {
     }
 
     enableValidation() {
-        document.querySelector('.popup__form').addEventListener('click', function (evt) {
-            evt.preventDefault();
+        document.querySelector('.popup__form').addEventListener('submit', function (evt) {
+            evt.preventDefault();        
         });
-
         this._setEventListeners();
     }
 };

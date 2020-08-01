@@ -53,7 +53,7 @@
     <div class="popup popup_type_profile">
         <div class="popup__container">
             <button type="button" class="button popup__close"></button>
-            <form name="submit" action="#" method="post" class="popup__form popup__form_profile" novalidate>
+            <form name="submit" action="#" method="post" class="popup__form" novalidate>
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <input id="input-name" type="text" name="name" value="" placeholder='Имя'
                     class="popup__input popup__input_subject_name" required minlength="2" maxlength="40">
@@ -69,7 +69,7 @@
     <div class="popup popup_type_element">
         <div class="popup__container">
             <button type="button" class="button popup__close"></button>
-            <form name="submit" action="#" method="post" class="popup__form popup__form_element" novalidate>
+            <form name="submit" action="#" method="post" class="popup__form" novalidate>
                 <h3 class="popup__title">Новое место</h3>
                 <input id="input-title" type="text" name="pic-title" value="" placeholder="Название"
                     class="popup__input popup__input_subject_pic-title" required minlength="1" maxlength="30">
@@ -77,7 +77,7 @@
                 <input id="input-link" type="url" name="pic-link" value="" placeholder="Ссылка на картинку"
                     class="popup__input popup__input_subject_pic-link" required>
                 <span id="input-link-error" class="popup__input-error"></span>
-                <button type="submit" class="button popup__save popup__save_element">Создать</button>
+                <button type="submit" class="button popup__save">Создать</button>
             </form>
         </div>
     </div>
@@ -93,12 +93,6 @@
 
 
     <script type="module" src="./scripts/index.js"></script>
-    <!-- <script type="module" src="./scripts/card.js"></script>
-    <script type="module" src="./scripts/formValidator.js"></script>
-    <script type="module" src="./scripts/utils.js"></script>
-    <script type="module" src="./scripts/massiv.js"></script> -->
-
-
 </body>
 
 </html>

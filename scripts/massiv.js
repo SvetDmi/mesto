@@ -22,7 +22,14 @@ export const items = [
     {
         name: 'Байкал',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
+    },
 ];
 
-
+export const config = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    buttonSelector: '.popup__save',
+    errorInputClass: 'popup__input_error',
+    errorClass: 'popup__input-error_active',
+    errorButtonClass: 'popup__save_inactive'
+};

@@ -1,10 +1,9 @@
 import Card from './card.js';
-import { items } from './massiv.js';
 import FormValidator from './formValidator.js';
-import { config } from './formValidator.js';
+import { items, config } from './massiv.js';
+import { popupOpen, popupClose } from './utils.js';
 
 const popupProfile = document.querySelector('.popup_type_profile');
-const popupProfileForm = popupProfile.querySelector('.popup__form_profile');
 const buttonOpenProfile = document.querySelector('.profile__edit');
 const popupSaveProfile = popupProfile.querySelector('.popup__form');
 const inputName = popupSaveProfile.querySelector('.popup__input_subject_name');
@@ -14,7 +13,9 @@ const profileJob = document.querySelector('.profile__text');
 
 const popupElement = document.querySelector('.popup_type_element');
 const buttonAddElement = document.querySelector('.profile__add');
-const popupSaveElement = popupElement.querySelector('.popup__form_element');
+const popupSaveElement = popupElement.querySelector('.popup__form');
+const inputTitle = popupElement.querySelector('.popup__input_subject_pic-title');
+const inputLink = popupElement.querySelector('.popup__input_subject_pic-link');
 
 
 export const layout = document.querySelector('.popup_type_layout');
@@ -32,73 +33,57 @@ items.forEach((item) => {
     document.querySelector('.cards__items').prepend(cardElement);
 });
 
-const popupProfileValidatior = new FormValidator(config, popupProfileForm);
+const popupProfileValidatior = new FormValidator(config, popupProfile);
 popupProfileValidatior.enableValidation();
-
 
 const popupElementValidatior = new FormValidator(config, popupElement);
 popupElementValidatior.enableValidation();
 
-function popupOpen(popup) {
-    popup.classList.add('popup_opened');
-    document.addEventListener('keydown', popupCloseEsc);
-    popup.addEventListener('click', popupCloseOverlay);
-}
-
-function popupClose(popup) {
-
-    popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', popupCloseEsc);
-    popup.removeEventListener('click', popupCloseOverlay);
-}
-
-function popupCloseEsc(evt) {
-    if (evt.key === 'Escape') {
-        const openedPopup = document.querySelector('.popup_opened');
-        popupClose(openedPopup);
-    }
-}
-
-function popupCloseOverlay(evt) {
-    if (evt.target.classList.contains('popup_opened')) {
-        popupClose(evt.target);
-    }
-}
-
-function profileFormSubmit(evt) {
+function profileFormSubmit(evt) {  
     evt.preventDefault();
     profileName.textContent = inputName.value;
     profileJob.textContent = inputJob.value;
     popupClose(popupProfile);
 }
 
-buttonAddElement.addEventListener('click', function () {
-    popupSaveElement.reset();
-    popupElementValidatior.popupFormClean();
-    popupOpen(popupElement);
-})
-
-buttonCloseElement.addEventListener('click', function () {
-    popupClose(popupElement);
-})
-
-buttonCloselayout.addEventListener('click', function () {
-    popupClose(layout);
-})
+function elementFormSubmit(evt) {
+    evt.preventDefault();
+    items.push({name: inputTitle.value, 
+        link: inputLink.value});
+    const item = items[items.length-1];
+    const card = new Card(item, '.elements');    
+    const cardElement = card.generateCard();
+    document.querySelector('.cards__items').prepend(cardElement);
+    popupClose(popupElement);    
+}
 
 buttonOpenProfile.addEventListener('click', function () {
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
     popupProfileValidatior.popupFormClean();
-    popupOpen(popupProfile);
-
+    popupOpen(popupProfile);    
 });
 
-popupSaveProfile.addEventListener('submit', function () {
-    console.log('hello');
-    profileFormSubmit(popupProfile);
+buttonAddElement.addEventListener('click', function () {
+    popupSaveElement.reset();
+    popupElementValidatior.popupFormClean();
+    popupOpen(popupElement);
 });
+
+popupSaveProfile.addEventListener('submit', profileFormSubmit);
+
+popupSaveElement.addEventListener('submit', elementFormSubmit);
+
 
 buttonCloseProfile.addEventListener('click', function () {
     popupClose(popupProfile);
 });
+
+buttonCloseElement.addEventListener('click', function () {
+    popupClose(popupElement);
+});
+
+buttonCloselayout.addEventListener('click', function () {
+    popupClose(layout);
+});
+
