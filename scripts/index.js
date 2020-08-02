@@ -19,8 +19,7 @@ const inputLink = popupElement.querySelector('.popup__input_subject_pic-link');
 
 
 export const layout = document.querySelector('.popup_type_layout');
-export const layoutTitle = layout.querySelector('.popup__title_layout');
-export const layoutImg = layout.querySelector('.popup__img');
+const cardItem = document.querySelector('.cards__items');
 
 const buttonCloseProfile = popupProfile.querySelector('.popup__close');
 const buttonCloseElement = popupElement.querySelector('.popup__close');
@@ -30,7 +29,7 @@ const buttonCloselayout = layout.querySelector('.popup__close');
 items.forEach((item) => {
     const card = new Card(item, '.elements');
     const cardElement = card.generateCard();
-    document.querySelector('.cards__items').prepend(cardElement);
+    cardItem.prepend(cardElement);
 });
 
 const popupProfileValidatior = new FormValidator(config, popupProfile);
@@ -53,7 +52,7 @@ function elementFormSubmit(evt) {
     const item = items[items.length-1];
     const card = new Card(item, '.elements');    
     const cardElement = card.generateCard();
-    document.querySelector('.cards__items').prepend(cardElement);
+    cardItem.prepend(cardElement);
     popupClose(popupElement);    
 }
 
