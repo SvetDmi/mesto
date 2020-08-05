@@ -1,11 +1,13 @@
-import { popupOpen } from './utils.js';
-import { layout } from './index.js';
+import { popupOpen } from '../utils/utils.js';
+import { popupFormLayout, layout } from '../pages/index.js';
+
 
 export default class Card {
-    constructor(data, cardSelector) {
+    constructor(data, cardSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;        
-        this._cardSelector = cardSelector;            
+        this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;           
     }
 
      _getTemplate() {
@@ -36,6 +38,11 @@ export default class Card {
         this._element.remove();
     }
 
+    // _handleCardClick() {
+    // popupFormLayout.popupOpen(layout);        
+    // }
+
+
     _setEventListeners() {
         this._element.querySelector('.elements__like').addEventListener('click', () => {
             this._likeCard();
@@ -44,9 +51,8 @@ export default class Card {
             this._deleteCard();
         });
         this._element.querySelector('.elements__img').addEventListener('click', () => {
-            popupOpen(layout);
-            layout.querySelector('.popup__title').textContent = this._name;
-            layout.querySelector('.popup__img').src = this._link;
+            this._handleCardClick();
+        
         });
     }
 }
