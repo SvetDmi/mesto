@@ -1,16 +1,13 @@
-import { popupOpen } from '../utils/utils.js';
-import { popupFormLayout, layout } from '../pages/index.js';
-
+import PopupWithImage from './PopupWithImage.js';
 
 export default class Card {
-    constructor(data, cardSelector, handleCardClick) {
+    constructor(data, cardSelector) {
         this._name = data.name;
-        this._link = data.link;        
+        this._link = data.link;
         this._cardSelector = cardSelector;
-        this._handleCardClick = handleCardClick;           
     }
 
-     _getTemplate() {
+    _getTemplate() {
         const cardElement = document
             .querySelector(this._cardSelector)
             .content
@@ -38,10 +35,13 @@ export default class Card {
         this._element.remove();
     }
 
-    // _handleCardClick() {
-    // popupFormLayout.popupOpen(layout);        
-    // }
 
+    _handleCardClick() {
+        this._popupFormLayout = new PopupWithImage('.popup_type_layout');
+        const name = this._name;
+        const link = this._link;
+        this._popupFormLayout.popupOpen(name, link);
+    }
 
     _setEventListeners() {
         this._element.querySelector('.elements__like').addEventListener('click', () => {
@@ -52,7 +52,7 @@ export default class Card {
         });
         this._element.querySelector('.elements__img').addEventListener('click', () => {
             this._handleCardClick();
-        
+
         });
     }
 }

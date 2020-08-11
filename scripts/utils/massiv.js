@@ -33,3 +33,8 @@ export const config = {
     errorClass: 'popup__input-error_active',
     errorButtonClass: 'popup__save_inactive'
 };
+
+export const user = {
+    nameSelector: '.profile__title',
+    infoSelector: '.profile__text',
+};

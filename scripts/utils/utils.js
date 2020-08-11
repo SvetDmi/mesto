@@ -1,13 +1,13 @@
 export function popupOpen(popup) {
-    popup.classList.add('popup_opened');    
-    document.addEventListener('keydown', popupCloseEsc);
+    popup.classList.add('popup_opened');
     popup.addEventListener('click', popupCloseOverlay);
+    document.addEventListener('keydown', popupCloseEsc);
 }
 
 export function popupClose(popup) {
     popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', popupCloseEsc);
     popup.removeEventListener('click', popupCloseOverlay);
+    document.removeEventListener('keydown', popupCloseEsc);
 }
 
 function popupCloseEsc(evt) {
@@ -19,7 +19,7 @@ function popupCloseEsc(evt) {
 
 function popupCloseOverlay(evt) {
     if (evt.target.classList.contains('popup_opened')) {
-        popupClose(evt.target);
+        popupClose();
     }
 }
 

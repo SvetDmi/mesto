@@ -65,7 +65,7 @@ export default class FormValidator {
 
     enableValidation() {
         document.querySelector('.popup__form').addEventListener('submit', function (evt) {
-            evt.preventDefault();        
+            evt.preventDefault();
         });
         this._setEventListeners();
     }
