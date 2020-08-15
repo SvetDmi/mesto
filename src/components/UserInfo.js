@@ -4,7 +4,7 @@ export default class UserInfo {
     }
 
     getUserInfo() {
-        this._userName = document.querySelector(this._user.nameSelector);
+        this._userName = document.querySelector(this._user.titleSelector);
         this._userInfo = document.querySelector(this._user.infoSelector);
         this._userArr = {};
         this._userArr.name = this._userName.textContent;
@@ -12,13 +12,9 @@ export default class UserInfo {
         return this._userArr;
     }
 
-    putUserInfo(name, info) {
-        name.value = this._userArr.name;
-        info.value = this._userArr.info;
-    }
+    setUserInfo(data) {
+        this._userName.textContent = data.name;
+        this._userInfo.textContent = data.job;
 
-    setUserInfo(name, info) {
-        this._userName.textContent = name.value;
-        this._userInfo.textContent = info.value;
     }
 }

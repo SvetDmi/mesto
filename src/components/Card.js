@@ -1,8 +1,8 @@
-import PopupWithImage from './PopupWithImage.js';
+import { popupFormLayout } from '../pages/index.js';
 
 export default class Card {
     constructor(data, cardSelector) {
-        this._name = data.name;
+        this._title = data.title;
         this._link = data.link;
         this._cardSelector = cardSelector;
     }
@@ -19,9 +19,9 @@ export default class Card {
     generateCard() {
         this._element = this._getTemplate();
         this._setEventListeners();
-        this._element.querySelector('.elements__title').textContent = this._name;
+        this._element.querySelector('.elements__title').textContent = this._title;
         this._element.querySelector('.elements__img').src = this._link;
-        this._element.querySelector('.elements__img').alt = this._name;
+        this._element.querySelector('.elements__img').alt = this._title;
         return this._element;
     }
 
@@ -37,21 +37,21 @@ export default class Card {
 
 
     _handleCardClick() {
-        this._popupFormLayout = new PopupWithImage('.popup_type_layout');
-        const name = this._name;
+        this._popupFormLayout = popupFormLayout;
+        const title = this._title;
         const link = this._link;
-        this._popupFormLayout.popupOpen(name, link);
+        this._popupFormLayout.popupOpen(title, link);
     }
 
     _setEventListeners() {
         this._element.querySelector('.elements__like').addEventListener('click', () => {
-            this._likeCard();
+            this._likeCard()
         });
         this._element.querySelector('.elements__trash').addEventListener('click', () => {
-            this._deleteCard();
+            this._deleteCard()
         });
         this._element.querySelector('.elements__img').addEventListener('click', () => {
-            this._handleCardClick();
+            this._handleCardClick()
 
         });
     }

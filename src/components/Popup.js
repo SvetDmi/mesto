@@ -1,9 +1,12 @@
+
+
 import { ESC_CODE } from '../utils/constants.js';
+
 
 export default class Popup {
     constructor(popupSelector) {
-        this._popupSelector = popupSelector;
-        this._popup = document.querySelector(this._popupSelector);
+
+        this._popup = document.querySelector(popupSelector);
     };
 
     popupOpen() {
@@ -13,9 +16,9 @@ export default class Popup {
     };
 
     popupClose() {
+
         this._popup.classList.remove('popup_opened');
         document.removeEventListener('keydown', this._popupCloseEsc);
-        this._setEventListeners();
     }
 
     _popupCloseEsc = (evt) => {
@@ -30,9 +33,12 @@ export default class Popup {
         }
     }
 
-    _setEventListeners() {
-        this._popup.querySelector('.popup__close').addEventListener('click', () =>
-            this.popupClose());
-        this._popup.addEventListener('click', this._popupCloseOverlay);
+    setEventListeners() {
+        this._popup.querySelector('.popup__close').addEventListener('click', () => {
+            this.popupClose()
+        });
+        this._popup.addEventListener('click', this._popupCloseOverlay)
+
     }
 }
+
