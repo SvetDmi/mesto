@@ -35,6 +35,6 @@ export const config = {
 };
 
 export const user = {
-    titleSelector: '.profile__title',
-    infoSelector: '.profile__text',
+    nameSelector: '.profile__title',
+    jobSelector: '.profile__text',
 };

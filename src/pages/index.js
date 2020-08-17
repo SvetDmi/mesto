@@ -1,7 +1,5 @@
 import './index.css';
 
-
-
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -57,9 +55,14 @@ popupFormProfile.setEventListeners();
 
 
 consts.buttonOpenProfile.addEventListener('click', function () {
-    userInfo.getUserInfo();
+    const data = userInfo.getUserInfo();
+    const inputName = consts.popupSaveProfile.querySelector('.popup__input_subject_name');
+    const inputJob = consts.popupSaveProfile.querySelector('.popup__input_subject_job');
+    inputName.value = data.name;
+    inputJob.value = data.job;
     popupProfileValidatior.popupFormClean();
     popupFormProfile.popupOpen();
+
 });
 
 consts.buttonAddElement.addEventListener('click', function () {
