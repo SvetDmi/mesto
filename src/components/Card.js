@@ -1,10 +1,10 @@
-import { popupFormLayout } from '../pages/index.js';
-
 export default class Card {
-    constructor(data, cardSelector) {
+    constructor({ data, handleCardClick }, cardSelector) {
+        this._data = data;
         this._title = data.title;
         this._link = data.link;
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -36,13 +36,6 @@ export default class Card {
     }
 
 
-    _handleCardClick() {
-        this._popupFormLayout = popupFormLayout;
-        const title = this._title;
-        const link = this._link;
-        this._popupFormLayout.popupOpen(title, link);
-    }
-
     _setEventListeners() {
         this._element.querySelector('.elements__like').addEventListener('click', () => {
             this._likeCard()
@@ -56,3 +49,4 @@ export default class Card {
         });
     }
 }
+
