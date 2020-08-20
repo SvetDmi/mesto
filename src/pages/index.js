@@ -9,8 +9,6 @@ import UserInfo from '../components/UserInfo.js';
 import { items, config, user } from '../utils/massiv.js';
 import * as consts from '../utils/constants.js';
 
-// Приношу извинения, так торопилась послать работу на код-ревью (чтобы успеть к дню рождения (вчера было) все закончить), 
-// что умудрилась в упор не увидеть отметки об ошибках в Card и index. Закон подлости в действии. Надеюсь, сейчас все сделала
 
 const cardList = new Section({
     items: items,
@@ -20,7 +18,7 @@ const cardList = new Section({
             handleCardClick: () => {
 
                 popupFormLayout.popupOpen(item);
-                console.log(item);
+
             },
         },
             '.elements'
