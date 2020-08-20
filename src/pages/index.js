@@ -1,3 +1,4 @@
+import './index.css';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -6,16 +7,6 @@ import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import { items, config, user } from '../utils/massiv.js';
 import * as consts from '../utils/constants.js';
-
-
-const popupProfileValidatior = new FormValidator(config, consts.popupProfile);
-popupProfileValidatior.enableValidation();
-
-const popupElementValidatior = new FormValidator(config, consts.popupElement);
-popupElementValidatior.enableValidation();
-
-const popupFormLayout = new PopupWithImage('.popup_type_layout');
-popupFormLayout.setEventListeners();
 
 const renderCard = item => {
     const card = new Card({
@@ -31,7 +22,7 @@ const renderCard = item => {
 
 const cardList = new Section({
     items: items,
-    renderCard()
+    render: renderCard
 },
     consts.cardItemsSelector
 );
@@ -44,57 +35,28 @@ const popupFormElement = new PopupWithForm({
 },
     popupFormElement.popupClose()
 );
-
-// const cardList = new Section({
-//     items: items,
-//     renderer: (item) => {
-//         const card = new Card({
-//             data: item,
-//             handleCardClick: () => {
-//                 popupFormLayout.popupOpen(item);
-//             },
-//         },
-//             '.elements'
-//         );
-//         const cardElement = card.generateCard();
-//         cardList.addItem(cardElement);
-//     },
-// },
-//     consts.cardItemsSelector
-// );
-// cardList.renderItems();
-
-// const popupFormElement = new PopupWithForm({
-//     popupSelector: '.popup_type_element',
-//     handleFormSubmit: (data) => {
-//         const card = new Card({
-//             data: data,
-//             handleCardClick: () => {
-//                 popupFormLayout.popupOpen(data);
-//                 console.log(data)
-//             },
-//         },
-//             '.elements');
-//         const cardElement = card.generateCard();
-//         cardList.addItem(cardElement);
-//         popupFormElement.popupClose();
-//     }
-
-// });
 popupFormElement.setEventListeners();
 
-const userInfo = new UserInfo(user);
 
+
+const popupProfileValidatior = new FormValidator(config, consts.popupProfile);
+popupProfileValidatior.enableValidation();
+
+const popupElementValidatior = new FormValidator(config, consts.popupElement);
+popupElementValidatior.enableValidation();
+
+const popupFormLayout = new PopupWithImage('.popup_type_layout');
+popupFormLayout.setEventListeners();
+
+
+const userInfo = new UserInfo(user);
 const popupFormProfile = new PopupWithForm({
     popupSelector: '.popup_type_profile',
     handleFormSubmit: (data) => {
         userInfo.setUserInfo(data)
     }
-
 });
 popupFormProfile.setEventListeners();
-
-
 
 consts.buttonOpenProfile.addEventListener('click', function () {
     const data = userInfo.getUserInfo();
@@ -104,7 +66,6 @@ consts.buttonOpenProfile.addEventListener('click', function () {
     inputJob.value = data.job;
     popupProfileValidatior.popupFormClean();
     popupFormProfile.popupOpen();
-
 });
 
 consts.buttonAddElement.addEventListener('click', function () {
@@ -116,9 +77,6 @@ consts.buttonAddElement.addEventListener('click', function () {
 consts.popupSaveProfile.addEventListener('submit', function () {
     popupFormProfile.popupClose();
 });
-
 consts.popupSaveElement.addEventListener('submit', function () {
     popupFormElement.popupClose();
 });
-
-
