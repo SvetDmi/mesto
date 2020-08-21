@@ -19,24 +19,21 @@ const renderCard = item => {
     );
     cardList.addItem(card.generateCard());
 }
-
 const cardList = new Section({
     items: items,
-    render: renderCard
+    renderer: renderCard()
 },
     consts.cardItemsSelector
 );
-
 const popupFormElement = new PopupWithForm({
     popupSelector: '.popup_type_element',
     handleFormSubmit: (data) => {
         renderCard(data)
     }
-},
-    popupFormElement.popupClose()
+}
 );
 popupFormElement.setEventListeners();
-
+cardList.renderItems();
 
 
 const popupProfileValidatior = new FormValidator(config, consts.popupProfile);
