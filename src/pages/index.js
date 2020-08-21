@@ -8,6 +8,9 @@ import UserInfo from '../components/UserInfo.js';
 import { items, config, user } from '../utils/massiv.js';
 import * as consts from '../utils/constants.js';
 
+//все пометки с "можно исправить" обязательно сделаю, 
+// но сейчас нет возможности тратить время на это, надеюсь все, что "надо исправить" я выполнила
+
 const renderCard = item => {
     const card = new Card({
         data: item,
