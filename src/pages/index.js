@@ -21,7 +21,7 @@ const renderCard = item => {
 }
 const cardList = new Section({
     items: items,
-    renderer: renderCard()
+    renderer: renderCard
 },
     consts.cardItemsSelector
 );

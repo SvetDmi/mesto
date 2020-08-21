@@ -7,8 +7,8 @@ module.exports = {
     devtool: 'eval',
     mode: 'production',
     output: {
-        filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
+        filename: 'main.js'
     },
     module: {
         rules: [
