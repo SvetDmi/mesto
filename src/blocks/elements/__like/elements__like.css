@@ -3,8 +3,7 @@
     height: 20px;
     background-image: url(../../../images/like.svg);
     border: none;
-    margin-right: 15px;
-    padding: 1px;
+    
  
 }
 
@@ -15,3 +14,4 @@
     background-position: center;
     
   }
+

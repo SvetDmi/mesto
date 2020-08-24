@@ -2,4 +2,22 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
+    position: relative;
+    cursor: pointer;  
+}
+
+.profile__avatar_edit {
+    position: absolute;
+    width: 120px;
+    height: 120px;   
+    display: none;
+    background: rgba(0, 0, 0, 0.8);
+    background-image: url(../../../images/EditAvatar.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+
+}
+
+.profile__avatar:hover + .profile__avatar_edit{
+    display:block;
 }
