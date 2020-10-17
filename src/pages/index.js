@@ -7,28 +7,79 @@ import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import PopupWithSubmit from '../components/PopupWithSubmit';
 import Api from '../components/Api';
-import { items } from '../utils/massiv.js';
+
 import {
-    popupProfile, popupElement, popupLayout, buttonOpenProfile, popupSaveProfile,
-    buttonAddElement, popupSaveElement, buttonCloseProfile, buttonCloseElement,
-    buttonCloselayout, cardItemsSelector, ESC_CODE, config, user, token
+    popupProfile, popupElement, popupAvatar, buttonOpenProfile, 
+    buttonAddElement, popupSaveElement, buttonEditAvatar, cardItemsSelector, config, user
 } from '../utils/constants.js';
 
-const api = new Api(token);
+const api = new Api({
+    url: 'https://mesto.nomoreparties.co/v1/cohort-16',
+    headers: {
+        authorization: '5e818745-1601-43fc-b5f2-fedadb1bc162',
+        'Content-Type': 'application/json'
+    }
+  });
+
+let userId;
 
 // КАРТОЧКИ
+
+api.getInitialCards()
+.then((data) => {
+    cardList.renderItems(data.reverse());
+})
+.catch((err) => {
+    console.log(err)
+});
 
 const renderCard = data => {
     const card = new Card({
         data: data,
         handleCardClick: () => {
-            popupFormLayout.popupOpen(data);
+            popupFormLayout.popupOpen(data);          
         },
-    },
+
+        likesCard: (evt) => {
+            if (evt.target.classList.contains('elements__like_active')) {
+                api.deleteLike(data._id)
+                .then((res) => {
+                    card.likesCard(evt)
+                    card.isLikes(res.likes);
+                })
+                .catch((err) => console.log(err))
+            } else {
+                api.doLike(data._id)
+                .then((res) => {
+                    card.likesCard(evt),
+                    card.isLikes(res.likes);
+                })
+                .catch((err) => console.log(err))
+            }
+            },
+
+        deleteCard: () => {
+            popupFormDelete.popupOpen(data._id);
+            popupFormDelete.handleFormSubmit = () => { 
+        
+                api.deleteCard(data._id)      
+                    .then((res) => {
+                        card.deleteCard(res);
+                        popupFormDelete.popupClose();               
+        })
+                    .catch((err) => console.log(err))                    
+            }
+          },        
+                
+        userId: userId
+        },
+
         '.elements'
-    );
+);
     cardList.addItem(card.generateCard());
-}
+    
+};
+
 const cardList = new Section({
     data: [],
     renderer: renderCard
@@ -36,23 +87,33 @@ const cardList = new Section({
     cardItemsSelector
 );
 
-api.getInitialCards()
-    .then((data) => {
-        cardList.renderItems(data)
-    })
-    .catch((err) => {
-        console.log(err)
-    });
+const popupFormDelete = new PopupWithSubmit({
+    popupSelector:'.popup_type_update' 
 
+});
+popupFormDelete.setEventListeners();
 
 const popupFormElement = new PopupWithForm({
     popupSelector: '.popup_type_element',
-    handleFormSubmit: (data) => {
-        renderCard(data)
+    handleFormSubmit: (data) => {        
+        popupFormElement.saveLoading(true);
+        api.addCard(data)      
+            .then((result) => {
+                renderCard(result);
+                popupFormElement.popupClose();               
+})
+            .catch((err) => console.log(err))
+            .finally(() => {
+                popupFormElement.saveLoading(false)
+                               
+            });  
     }
-}
-);
+    
+});
 popupFormElement.setEventListeners();
+
+const popupFormLayout = new PopupWithImage('.popup_type_layout');
+popupFormLayout.setEventListeners();
 
 // ВАЛИДАТОРЫ
 
@@ -62,43 +123,74 @@ popupProfileValidatior.enableValidation();
 const popupElementValidatior = new FormValidator(config, popupElement);
 popupElementValidatior.enableValidation();
 
-const popupFormLayout = new PopupWithImage('.popup_type_layout');
-popupFormLayout.setEventListeners();
+const popupAvatarValidatior = new FormValidator(config, popupAvatar);
+popupAvatarValidatior.enableValidation();
 
 // ПРОФИЛЬ
-
 const userInfo = new UserInfo(user);
+
+api.getUserInfo()
+.then ((userData) => {    
+userInfo.setUserInfo(userData)
+userInfo.setUserAvatar(userData)
+userId = userData._id;
+})
+.catch((err) => {
+    console.log(err)
+})
+.finally(() => {
+    console.log(userId)              
+});  
+
 const popupFormProfile = new PopupWithForm({
     popupSelector: '.popup_type_profile',
-    handleFormSubmit: (data) => {
-        userInfo.setUserInfo(data)
+    handleFormSubmit: (inputData) => {
+        
+        popupFormProfile.saveLoading(true);
+        api.editUserInfo(inputData)
+        .then ((result) => {
+            
+            userInfo.setUserInfo(result);
+            popupFormProfile.popupClose;
+        })
+        .catch((err) => console.log(err))
+        .finally(() => {
+            
+            popupFormProfile.saveLoading(false)
+               
+        });     
     }
 });
 popupFormProfile.setEventListeners();
 
 const popupFormAvatar = new PopupWithForm({
     popupSelector: '.popup_type_avatar',
-    handleFormSubmit: (data) => {
-        renderCard(data)
-    }
+    handleFormSubmit: (inputData) => {
+        
+        popupFormAvatar.saveLoading(true);
+        api.editAvatar(inputData)
+        .then((result) => {
+            userInfo.setUserAvatar(result);
+            popupFormAvatar.popupClose;
+        })
+        .catch((err) => console.log(err))
+        .finally(() => {
+            popupFormAvatar.saveLoading(false)
+            console.log(inputData)            
+    });
 }
-);
+
+});
 popupFormAvatar.setEventListeners();
-
-// const popupWithSubmit = new PopupWithSubmit({
-//     popupSelector: '.popup_type_update',
-//     // submit: 
-
-// });
 
 // BUTTONS
 
 buttonOpenProfile.addEventListener('click', function () {
-    const data = userInfo.getUserInfo();
-    const inputName = popupSaveProfile.querySelector('.popup__input_subject_name');
-    const inputJob = popupSaveProfile.querySelector('.popup__input_subject_job');
-    inputName.value = data.name;
-    inputJob.value = data.job;
+    const userData = userInfo.getUserInfo();
+    const inputName = popupProfile.querySelector('.popup__input_subject_name');
+    const inputAbout = popupProfile.querySelector('.popup__input_subject_job');
+    inputName.value = userData.name;
+    inputAbout.value = userData.about;
     popupProfileValidatior.popupFormClean();
     popupFormProfile.popupOpen();
 });
@@ -109,9 +201,9 @@ buttonAddElement.addEventListener('click', function () {
     popupFormElement.popupOpen();
 });
 
-popupSaveProfile.addEventListener('submit', function () {
-    popupFormProfile.popupClose();
-});
-popupSaveElement.addEventListener('submit', function () {
-    popupFormElement.popupClose();
-});
+buttonEditAvatar.addEventListener('click', function () {
+    const inputAvatar = popupAvatar.querySelector('.popup__input_subject_pic-link');
+    inputAvatar.value = "";
+    popupAvatarValidatior.popupFormClean();  
+    popupFormAvatar.popupOpen();
+  });

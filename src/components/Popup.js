@@ -1,11 +1,8 @@
-
-
 import { ESC_CODE } from '../utils/constants.js';
 
 
 export default class Popup {
     constructor(popupSelector) {
-
         this._popup = document.querySelector(popupSelector);
     };
 
@@ -16,7 +13,6 @@ export default class Popup {
     };
 
     popupClose() {
-
         this._popup.classList.remove('popup_opened');
         document.removeEventListener('keydown', this._popupCloseEsc);
     }
@@ -39,6 +35,11 @@ export default class Popup {
         });
         this._popup.addEventListener('click', this._popupCloseOverlay)
 
+    }
+
+    saveLoading (loading) {
+        const saveButton = this._popup.querySelector('.popup__save');
+        saveButton.textContent = loading ? 'Сохранение...' : 'Сохранить';
     }
 }
 

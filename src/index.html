@@ -17,7 +17,7 @@
     <main>
         <section class="profile page__sections">
             <img src="images/image.jpg" alt="Портрет Кусто" class="profile__avatar">
-            <div class="profile__avatar_edit"></div>
+            <button type = "button" class="button profile__avatar_edit"></button>
             <div class="profile__info">
                 <h1 class="profile__title">Жак-Ив Кусто </h1>
                 <button type="button" class="button profile__edit"></button>
@@ -50,7 +50,7 @@
                 <input id="input-name" type="text" name="name" value="" placeholder='Имя'
                     class="popup__input popup__input_subject_name" required minlength="2" maxlength="40">
                 <span id="input-name-error" class="popup__input-error"></span>
-                <input id="input-job" type="text" name="job" value="" placeholder='О себе'
+                <input id="input-job" type="text" name="about" value="" placeholder='О себе'
                     class="popup__input popup__input_subject_job" required minlength="2" maxlength="200">
                 <span id="input-job-error" class="popup__input-error"></span>
                 <button type="submit" class="button popup__save">Сохранить</button>
@@ -63,9 +63,9 @@
             <button type="button" class="button popup__close"></button>
             <form name="submitCard" action="#" method="post" class="popup__form" novalidate>
                 <h3 class="popup__title">Новое место</h3>
-                <input id="input-title" type="text" name="title" value="" placeholder="Название"
+                <input id="input-name" type="text" name="name" value="" placeholder="Название"
                     class="popup__input popup__input_subject_pictitle" required minlength="1" maxlength="30">
-                <span id="input-title-error" class="popup__input-error"></span>
+                <span id="input-name-error" class="popup__input-error"></span>
                 <input id="input-link" type="url" name="link" value="" placeholder="Ссылка на картинку"
                     class="popup__input popup__input_subject_pic-link" required>
                 <span id="input-link-error" class="popup__input-error"></span>
@@ -86,8 +86,8 @@
     <div class="popup popup_type_avatar">
         <div class="popup__container popup__container_avatar">
             <button type="button" class="button popup__close"></button>
-            <h2 class="popup__title popup__title_update">Обновить аватар</h2>
-            <form name="submitCard" action="#" method="post" class="popup__form" novalidate>
+            <h3 class="popup__title popup__title_update">Обновить аватар</h3>
+            <form name="submitAvatar" action="#" method="post" class="popup__form" novalidate>
                 <input id="input-link" type="url" name="link" value="" placeholder="Ссылка на картинку"
                     class="popup__input popup__input_subject_pic-link" required>
                 <span id="input-link-error" class="popup__input-error"></span>
