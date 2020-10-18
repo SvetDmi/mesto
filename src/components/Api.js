@@ -4,19 +4,23 @@ export default class Api {
         this._headers = headers
       };
 
-    _testRes(res) {
+    _parsAnswer(res) {
         if (res.ok) {
             return res.json();            
         }
         return Promise.reject(`Ошибка: ${res.status}`);        
     }
+    _catch(err) {
+        console.log(err)
+    }
+    
 
    // 1. Загрузка информации о пользователе с сервера
    getUserInfo() {
         return fetch (`${this._url}/users/me`, {
             headers: this._headers
         })
-        .then(this._testRes)
+        .then(this._parsAnswer)
     };
 
     // 2. Загрузка карточек с сервера
@@ -24,7 +28,7 @@ export default class Api {
         return fetch(`${this._url}/cards`, {
             headers: this._headers
         })
-            .then(this._testRes)  
+            .then(this._parsAnswer)  
     }        
   
 
@@ -38,7 +42,7 @@ export default class Api {
                 about: inputData.about
         })
         })
-        .then(this._testRes)  
+        .then(this._parsAnswer)  
     }
   
     // 4. Добавление новой карточки
@@ -51,7 +55,7 @@ export default class Api {
                 link: data.link
             })                   
         })
-        .then(this._testRes)
+        .then(this._parsAnswer)
    
     }
 
@@ -61,7 +65,7 @@ export default class Api {
                 method: "DELETE",
                 headers: this._headers
               })
-              .then(this._testRes)
+              .then(this._parsAnswer)
     }
  
     // 8. Постановка и снятие лайка
@@ -70,7 +74,7 @@ export default class Api {
             method: "PUT",
             headers: this._headers
           })
-          .then(this._testRes)
+          .then(this._parsAnswer)
     }
 
     deleteLike(_id) {
@@ -78,7 +82,7 @@ export default class Api {
             method: "DELETE",
             headers: this._headers
           })
-          .then(this._testRes); 
+          .then(this._parsAnswer); 
 
     }
 
@@ -91,45 +95,8 @@ export default class Api {
                 avatar: inputData.link
               })
         })
-        .then(this._testRes)
+        .then(this._parsAnswer)
     }
 }
 
- 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//     getUserInfo() {
-
-//     }
-
-//     editUserInfo() {
-
-//     }
-
-//     editUserAvatar() {
-
-//     }
-//    
-
-// }
-
-// const api = new Api(token) {
-
-// 
