@@ -13,6 +13,8 @@ import {
     buttonAddElement, popupSaveElement, buttonEditAvatar, cardItemsSelector, config, user
 } from '../utils/constants.js';
 
+let userId;
+
 const api = new Api({
     url: 'https://mesto.nomoreparties.co/v1/cohort-16',
     headers: {
@@ -21,17 +23,18 @@ const api = new Api({
     }
   });
 
-let userId;
-
-// КАРТОЧКИ
-
-api.getInitialCards()
-.then((data) => {
+api.getAllInfo()
+.then(res => {
+    const [data, userData] = res;
     cardList.renderItems(data.reverse());
+    userId = userData._id;    
 })
+
 .catch((err) => {
     console.log(err)
 });
+
+// КАРТОЧКИ
 
 const renderCard = data => {
     const card = new Card({
@@ -72,11 +75,12 @@ const renderCard = data => {
           },        
                 
         userId: userId
+       
         },
 
         '.elements'
 );
-    cardList.addItem(card.generateCard());
+    cardList.addItem(card.generateCard());   
     
 };
 
@@ -133,31 +137,25 @@ api.getUserInfo()
 .then ((userData) => {    
 userInfo.setUserInfo(userData)
 userInfo.setUserAvatar(userData)
-userId = userData._id;
+// userId = userData._id;
 })
 .catch((err) => {
     console.log(err)
-})
-.finally(() => {
-    console.log(userId)              
-});  
+});
+  
 
 const popupFormProfile = new PopupWithForm({
     popupSelector: '.popup_type_profile',
-    handleFormSubmit: (inputData) => {
-        
+    handleFormSubmit: (inputData) => {        
         popupFormProfile.saveLoading(true);
         api.editUserInfo(inputData)
-        .then ((result) => {
-            
+        .then ((result) => {            
             userInfo.setUserInfo(result);
             popupFormProfile.popupClose;
         })
         .catch((err) => console.log(err))
-        .finally(() => {
-            
-            popupFormProfile.saveLoading(false)
-               
+        .finally(() => {            
+            popupFormProfile.saveLoading(false)               
         });     
     }
 });
@@ -176,7 +174,7 @@ const popupFormAvatar = new PopupWithForm({
         .catch((err) => console.log(err))
         .finally(() => {
             popupFormAvatar.saveLoading(false)
-            console.log(inputData)            
+                      
     });
 }
 

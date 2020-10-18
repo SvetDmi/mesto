@@ -10,9 +10,6 @@ export default class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`);        
     }
-    _catch(err) {
-        console.log(err)
-    }
     
 
    // 1. Загрузка информации о пользователе с сервера
@@ -29,10 +26,14 @@ export default class Api {
             headers: this._headers
         })
             .then(this._parsAnswer)  
-    }        
-  
+    };
 
-    // 3. Редактирование профиля
+
+   getAllInfo() {   
+        return Promise.all([this.getInitialCards(), this.getUserInfo()]) 
+   }
+   
+       // 3. Редактирование профиля
     editUserInfo(inputData) {
         return fetch (`${this._url}/users/me`, {
             method: 'PATCH',
