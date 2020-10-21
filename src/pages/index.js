@@ -140,7 +140,7 @@ const popupFormProfile = new PopupWithForm({
         api.editUserInfo(inputData)
         .then ((result) => {            
             userInfo.setUserInfo(result);
-            popupFormProfile.popupClose;
+            popupFormProfile.popupClose();
         })
         .catch((err) => console.log(err))
         .finally(() => {            
@@ -152,18 +152,16 @@ popupFormProfile.setEventListeners();
 
 const popupFormAvatar = new PopupWithForm({
     popupSelector: '.popup_type_avatar',
-    handleFormSubmit: (inputData) => {
-        
+    handleFormSubmit: (inputData) => {        
         popupFormAvatar.saveLoading(true);
         api.editAvatar(inputData)
         .then((result) => {
             userInfo.setUserAvatar(result);
-            popupFormAvatar.popupClose;
+            popupFormAvatar.popupClose();
         })
         .catch((err) => console.log(err))
         .finally(() => {
-            popupFormAvatar.saveLoading(false)
-                      
+            popupFormAvatar.saveLoading(false)                      
     });
 }
 
