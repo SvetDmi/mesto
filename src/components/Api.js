@@ -26,6 +26,8 @@ export default class Api {
             headers: this._headers
         })
             .then(this._parsAnswer)  
+        //       .then((res) => {
+        // console.log(res);
     };
 
 

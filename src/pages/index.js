@@ -13,8 +13,6 @@ import {
     buttonAddElement, popupSaveElement, buttonEditAvatar, cardItemsSelector, config, user
 } from '../utils/constants.js';
 
-let userId;
-
 const api = new Api({
     url: 'https://mesto.nomoreparties.co/v1/cohort-16',
     headers: {
@@ -22,23 +20,25 @@ const api = new Api({
         'Content-Type': 'application/json'
     }
   });
+let userId
 
 api.getAllInfo()
-.then(res => {
-    const [data, userData] = res;
-    cardList.renderItems(data.reverse());
-    userId = userData._id;    
+.then(res =>  { 
+    const data = res[0];
+    const userData = res[1]; 
+userInfo.setUserInfo(userData)
+userInfo.setUserAvatar(userData)
+userId = userData._id;
+cardList.renderItems(data.reverse())
 })
 
-.catch((err) => {
+.catch(err => {
     console.log(err)
 });
 
-// КАРТОЧКИ
-
 const renderCard = data => {
     const card = new Card({
-        data: data,
+        data: data,                
         handleCardClick: () => {
             popupFormLayout.popupOpen(data);          
         },
@@ -80,13 +80,13 @@ const renderCard = data => {
 
         '.elements'
 );
-    cardList.addItem(card.generateCard());   
+    cardList.addItem(card.generateCard());
     
 };
 
 const cardList = new Section({
     data: [],
-    renderer: renderCard
+    renderer:  (data) => { return renderCard (data)}
 },
     cardItemsSelector
 );
@@ -132,17 +132,6 @@ popupAvatarValidatior.enableValidation();
 
 // ПРОФИЛЬ
 const userInfo = new UserInfo(user);
-
-api.getUserInfo()
-.then ((userData) => {    
-userInfo.setUserInfo(userData)
-userInfo.setUserAvatar(userData)
-// userId = userData._id;
-})
-.catch((err) => {
-    console.log(err)
-});
-  
 
 const popupFormProfile = new PopupWithForm({
     popupSelector: '.popup_type_profile',
